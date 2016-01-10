@@ -5,9 +5,9 @@ import ManagerCan.Point;
 import java.util.List;
 
 public interface IManagerDataStore {
-    void addPointToDataStore(Point var1);
+    void addPointToDataStore(Point point);
 
-    List<Point> KnnAlgorithm(int var1, Point var2);
+    List<Point> KnnAlgorithm(int k, Point point,List<Point> dataStore);
 
-    void displayKnnNeighborsList(List<Point> var1);
+    void displayKnnNeighborsList(List<Point> points);
 }

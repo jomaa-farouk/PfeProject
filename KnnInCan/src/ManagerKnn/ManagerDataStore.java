@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ManagerDataStore implements IManagerDataStore {
-    private List<Point> dataStore = new ArrayList();
+    private List<Point> dataStore = new ArrayList<Point>();
 
     public ManagerDataStore() {
     }
@@ -31,10 +31,10 @@ public class ManagerDataStore implements IManagerDataStore {
         this.dataStore.add(point);
     }
 
-    public List<Point> KnnAlgorithm(int k, Point p) {
-        ArrayList resultList = new ArrayList();
-        ArrayList listDataStoreDistances = new ArrayList();
-        Iterator iterator = this.dataStore.iterator();
+    public List<Point> KnnAlgorithm(int k, Point p,List<Point> dataStore) {
+        List<Point> resultList = new ArrayList<Point>();
+        List<ManagerPointDistance> listDataStoreDistances = new ArrayList<ManagerPointDistance>();
+        Iterator<Point> iterator = dataStore.iterator();
 
         while(iterator.hasNext()) {
             Point i = (Point)iterator.next();
@@ -47,15 +47,15 @@ public class ManagerDataStore implements IManagerDataStore {
 
         Collections.sort(listDataStoreDistances, new ManagerPointDistance());
 
-        for(int var8 = 0; var8 < k; ++var8) {
-            resultList.add(((ManagerPointDistance)listDataStoreDistances.get(var8)).getPoint());
+        for(int i = 0; i< k; i++) {
+            resultList.add(((ManagerPointDistance)listDataStoreDistances.get(i)).getPoint());
         }
 
         return resultList;
     }
 
     public void displayKnnNeighborsList(List<Point> list) {
-        Iterator iterator = list.iterator();
+        Iterator<Point> iterator = list.iterator();
         System.out.println("\nK_neighbors points :");
 
         while(iterator.hasNext()) {

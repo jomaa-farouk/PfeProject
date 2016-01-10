@@ -13,27 +13,35 @@ public class ManagerKnnFileMain {
 
     public static void main(String[] args) {
         FileHandler fileHundler = new FileHandler();
-        String fileRSource = "C:\\Files\\R_Point_Collection.txt";
-        String fileSSource = "C:\\Files\\S_Point_Collection.txt";
-        List RPoints = fileHundler.getAllPointsToBeAppliedByknn(fileRSource);
-        List SPoints = fileHundler.getAllPointsToBeAppliedByknn(fileSSource);
+        String workingDir = System.getProperty("user.dir");
+ 	    System.out.println("Current working directory : " + workingDir);
+ 	    
+ 	    
+        String fileRSource = workingDir+"\\files\\R_Point_Collection.txt";
+        String fileSSource = workingDir+"\\files\\S_Point_Collection.txt";
+        
+        
+        List<Point> RPoints = fileHundler.getAllPointsToBeAppliedByknn(fileRSource);
+        List<Point> SPoints = fileHundler.getAllPointsToBeAppliedByknn(fileSSource);
         fileHundler.displayPointsInFile(fileSSource, SPoints);
         fileHundler.displayPointsInFile(fileRSource, RPoints);
+        
         byte k = 20;
+        
         ManagerDataStore managerDataStore = new ManagerDataStore();
-        Iterator var8 = RPoints.iterator();
+        Iterator<Point> iterator= SPoints.iterator();
 
         Point point;
-        while(var8.hasNext()) {
-            point = (Point)var8.next();
+        while(iterator.hasNext()) {
+            point = (Point)iterator.next();
             managerDataStore.addPointToDataStore(point);
         }
 
-        var8 = SPoints.iterator();
+        iterator = RPoints.iterator();
 
-        while(var8.hasNext()) {
-            point = (Point)var8.next();
-            managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(k, point));
+        while(iterator.hasNext()) {
+            point = (Point)iterator.next();
+            managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(k, point,managerDataStore.getDataStore()));
         }
 
     }

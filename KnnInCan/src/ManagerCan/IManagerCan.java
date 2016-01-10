@@ -3,28 +3,33 @@ package ManagerCan;
 import ManagerCan.Peer;
 import ManagerCan.Point;
 import ManagerCan.Zone;
+import ManagerKnn.ManagerDataStore;
+
 import java.util.List;
 
 public interface IManagerCan {
-    Peer assignPeerToZone(Peer var1, Zone var2);
+	Peer assignPeerToZone(Peer var1, Zone var2);
 
-    List<Peer> devideGlobalZoneTo_N_ZonesAndPeers();
+	List<Peer> devideGlobalZoneTo_N_ZonesAndPeers();
 
-    void displayAllPeers();
+	void displayAllPeers();
 
-    void displayAllZones();
+	void displayAllZones();
 
-    Zone inWhichZoneIsthePoint(Point var1);
+	Zone inWhichZoneIsthePoint(Point point);
 
-    Peer inWhichPeerIsThePoint(Point var1);
+	Peer inWhichPeerIsThePoint(Point point);
 
-    List<Point> getGlobalDataStorePoints(String var1);
+	/********* Methods of FileHandler : ManagerKnn Package *********/
+	List<Point> getGlobalDataStorePoints(String fileSource);
 
-    List<Point> getAllPointsToBeAppliedByknn(String var1);
+	List<Point> getAllPointsToBeAppliedByknn(String fileSource);
+	
+	void writeListInFile(List<Point> list, String sourceFile,String nameFile);
 
-    void addPointToDataStore(Point var1);
+	/**********
+	 * Methods of ManagerDataStore : ManagerKnn Package
+	 ***************/
+	void addPointToDataStore(ManagerDataStore managerDataStore, Point point);
 
-    List<Point> KNNAlgorithm(int var1, Point var2);
-
-    void displayKnnNeighborsList(List<Point> var1);
 }

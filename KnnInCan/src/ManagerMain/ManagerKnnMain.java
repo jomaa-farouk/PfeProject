@@ -40,14 +40,14 @@ public class ManagerKnnMain {
         managerDataStore.addPointToDataStore(M);
         managerDataStore.addPointToDataStore(N);
         managerDataStore.addPointToDataStore(O);
-        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(2, A));
-        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(4, B));
-        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(5, C));
-        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(6, D));
-        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(7, E));
-        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(8, F));
-        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(9, G));
-        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(2, H));
-        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(3, I));
+        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(2, A,managerDataStore.getDataStore()));
+        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(4, B,managerDataStore.getDataStore()));
+        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(5, C,managerDataStore.getDataStore()));
+        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(6, D,managerDataStore.getDataStore()));
+        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(7, E,managerDataStore.getDataStore()));
+        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(8, F,managerDataStore.getDataStore()));
+        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(9, G,managerDataStore.getDataStore()));
+        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(2, H,managerDataStore.getDataStore()));
+        managerDataStore.displayKnnNeighborsList(managerDataStore.KnnAlgorithm(3, I,managerDataStore.getDataStore()));
     }
 }

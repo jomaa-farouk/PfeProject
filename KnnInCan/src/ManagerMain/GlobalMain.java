@@ -6,6 +6,8 @@ import ManagerCan.Peer;
 import ManagerCan.Point;
 import ManagerCan.Zone;
 import ManagerKnn.FileHandler;
+
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,35 +17,54 @@ public class GlobalMain {
 
 	public static void main(String[] args) {
 		FileHandler fileHundler = new FileHandler();
+
 		Zone globalZone = new Zone(0.0F, 0.0F, 10000.0F, 10000.0F);
+
 		ManagerCan managerCan = new ManagerCan(globalZone, 40);
+
 		managerCan.devideGlobalZoneTo_N_ZonesAndPeers();
+
 		System.out.println("All peers :");
 		managerCan.displayAllPeers();
 		System.out.println("All zones :");
 		managerCan.displayAllZones();
-		String fileRSource = "C:\\Files\\R_Point_Collection.txt";
-		String fileSSource = "C:\\Files\\S_Point_Collection.txt";
-		List RPoints = fileHundler.getAllPointsToBeAppliedByknn(fileRSource);
-		List SPoints = fileHundler.getAllPointsToBeAppliedByknn(fileSSource);
+
+		String workingDir = System.getProperty("user.dir");
+		System.out.println("Current working directory : " + workingDir);
+
+		String fileRSource = workingDir + "\\files\\R_Point_Collection.txt";
+		String fileSSource = workingDir + "\\files\\S_Point_Collection.txt";
+
+		List<Point> RPoints = fileHundler.getAllPointsToBeAppliedByknn(fileRSource);
+		List<Point> SPoints = fileHundler.getAllPointsToBeAppliedByknn(fileSSource);
 		fileHundler.displayPointsInFile(fileSSource, SPoints);
 		fileHundler.displayPointsInFile(fileRSource, RPoints);
+		
+		
 		byte k = 20;
-		Iterator var9 = RPoints.iterator();
 
-		Point point;
-		while (var9.hasNext()) {
-			point = (Point) var9.next();
-			managerCan.addPointToDataStore(point);
+		
+		Iterator<Point> iteratorS= SPoints.iterator();
+
+		
+	
+		
+		while (iteratorS.hasNext()) {
+			Point point = (Point) iteratorS.next();
+			managerCan.addPointToDataStore(managerCan.managerDataStore,point);
 		}
 
-		var9 = SPoints.iterator();
-
-		while (var9.hasNext()) {
-			point = (Point) var9.next();
+		Iterator<Point> iteratorR = RPoints.iterator();
+		
+		List<Point> resultList=new ArrayList<Point>();
+		
+		while (iteratorR.hasNext()) {
+			Point point = (Point) iteratorR.next();
 			Peer peer = managerCan.inWhichPeerIsThePoint(point);
 			System.out.println("The point " + point.toString() + " is in " + peer.toString());
-			managerCan.displayKnnNeighborsList(managerCan.KNNAlgorithm(k, point));
+			resultList=peer.KnnAlgorithm(managerCan.managerDataStore,k, point);
+			managerCan.writeListInFile(resultList, workingDir + "\\files", point.getName());
+			peer.displayKnnNeighborsList(managerCan.managerDataStore,resultList);
 		}
 
 	}

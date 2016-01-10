@@ -2,6 +2,7 @@
 package ManagerMain;
 
 import ManagerCan.ManagerCan;
+import ManagerCan.Peer;
 import ManagerCan.Point;
 import ManagerCan.ThreadPoint;
 import ManagerCan.Zone;
@@ -11,62 +12,72 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GlobalParallelMain {
-    public GlobalParallelMain() {
-    }
+	public GlobalParallelMain() {
+	}
 
-    public static void main(String[] args) {
-        FileHandler fileHundler = new FileHandler();
-        Zone globalZone = new Zone(0.0F, 0.0F, 10000.0F, 10000.0F);
-        ManagerCan managerCan = new ManagerCan(globalZone, 40);
-        managerCan.devideGlobalZoneTo_N_ZonesAndPeers();
-        System.out.println("All peers :");
-        managerCan.displayAllPeers();
-        System.out.println("All zones :");
-        managerCan.displayAllZones();
-        String fileRSource = "C:\\Files\\R_Point_Collection.txt";
-        String fileSSource = "C:\\Files\\S_Point_Collection.txt";
-        List RPoints = fileHundler.getAllPointsToBeAppliedByknn(fileRSource);
-        List SPoints = fileHundler.getAllPointsToBeAppliedByknn(fileSSource);
-        ArrayList RThreadPoints = new ArrayList();
-        ArrayList SThreadPoints = new ArrayList();
-        fileHundler.displayPointsInFile(fileSSource, SPoints);
-        fileHundler.displayPointsInFile(fileRSource, RPoints);
-        byte k = 20;
-        Iterator e = RPoints.iterator();
+	public static void main(String[] args) {
+		FileHandler fileHundler = new FileHandler();
+		Zone globalZone = new Zone(0.0F, 0.0F, 10000.0F, 10000.0F);
+		ManagerCan managerCan = new ManagerCan(globalZone, 40);
+		managerCan.devideGlobalZoneTo_N_ZonesAndPeers();
+		System.out.println("All peers :");
+		managerCan.displayAllPeers();
+		System.out.println("All zones :");
+		managerCan.displayAllZones();
 
-        Point threadPoint;
-        while(e.hasNext()) {
-            threadPoint = (Point)e.next();
-            managerCan.addPointToDataStore(threadPoint);
-            RThreadPoints.add(new ThreadPoint(k, threadPoint, managerCan));
-        }
+		String workingDir = System.getProperty("user.dir");
+		System.out.println("Current working directory : " + workingDir);
 
-        e = SPoints.iterator();
+		String fileRSource = workingDir + "\\files\\R_Point_Collection.txt";
+		String fileSSource = workingDir + "\\files\\S_Point_Collection.txt";
+		List<Point> RPoints = fileHundler.getAllPointsToBeAppliedByknn(fileRSource);
+		List<Point> SPoints = fileHundler.getAllPointsToBeAppliedByknn(fileSSource);
 
-        while(e.hasNext()) {
-            threadPoint = (Point)e.next();
-            SThreadPoints.add(new ThreadPoint(k, threadPoint, managerCan));
-        }
+		List<ThreadPoint> RThreadPoints = new ArrayList<ThreadPoint>();
+		List<ThreadPoint> SThreadPoints = new ArrayList<ThreadPoint>();
+		fileHundler.displayPointsInFile(fileSSource, SPoints);
+		fileHundler.displayPointsInFile(fileRSource, RPoints);
 
-        e = SThreadPoints.iterator();
+		byte k = 20;
 
-        ThreadPoint threadPoint1;
-        while(e.hasNext()) {
-            threadPoint1 = (ThreadPoint)e.next();
-            threadPoint1.start();
-        }
+		Iterator<Point> iteratorS = SPoints.iterator();
+		System.out.println(RPoints.size());
+		
+		Point point;
+		Peer peer;
 
-        try {
-            e = SThreadPoints.iterator();
+		while (iteratorS.hasNext()) {
+			point = (Point) iteratorS.next();
+			managerCan.addPointToDataStore(managerCan.managerDataStore,point);
+			peer=managerCan.inWhichPeerIsThePoint(point);
+			RThreadPoints.add(new ThreadPoint(k, point,peer,managerCan.managerDataStore));
+		}
 
-            while(e.hasNext()) {
-                threadPoint1 = (ThreadPoint)e.next();
-                threadPoint1.join();
-            }
-        } catch (InterruptedException var13) {
-            ;
-        }
+		Iterator<Point> iteratorR = RPoints.iterator();
 
-        System.out.println("Exécution terminée");
-    }
+		while (iteratorR.hasNext()) {
+			point = (Point) iteratorR.next();
+			SThreadPoints.add(new ThreadPoint(k, point, managerCan.inWhichPeerIsThePoint(point),managerCan.managerDataStore));
+		}
+
+		Iterator<ThreadPoint> iterator = SThreadPoints.iterator();
+		ThreadPoint threadPoint;
+
+		while (iterator.hasNext()) {
+			threadPoint = (ThreadPoint) iterator.next();
+			threadPoint.start();
+		}
+
+		try {
+
+			while (iterator.hasNext()) {
+				threadPoint = (ThreadPoint) iterator.next();
+				threadPoint.join();
+			}
+		} catch (InterruptedException e) {
+			;
+		}
+
+		System.out.println("Finished !");
+	}
 }
