@@ -50,8 +50,8 @@ public class FileHandler implements IFileHandler {
 					if (x != null) {
 						try {
 							e.close();
-						} catch (Throwable var23) {
-							x.addSuppressed(var23);
+						} catch (Throwable t) {
+							x.addSuppressed(t);
 						}
 					} else {
 						e.close();
@@ -59,7 +59,7 @@ public class FileHandler implements IFileHandler {
 				}
 
 			}
-		} catch (IOException var26) {
+		} catch (IOException a) {
 			;
 		}
 
@@ -110,9 +110,10 @@ public class FileHandler implements IFileHandler {
 			FileWriter fw = new FileWriter(sourceFile + "\\" + nameFile, true);
 			BufferedWriter output = new BufferedWriter(fw);
 			output.write(string);
+			output.write("\n");
 			output.flush();
 			output.close();
-			System.out.println("File created !");
+			System.out.println("Execution time created !");
 		} catch (IOException ioe) {
 			System.out.print("Error : ");
 			ioe.printStackTrace();
