@@ -24,8 +24,10 @@ public interface IManagerCan {
 	List<Point> getGlobalDataStorePoints(String fileSource);
 
 	List<Point> getAllPointsToBeAppliedByknn(String fileSource);
-	
-	void writeListInFile(List<Point> list, String sourceFile,String nameFile);
+
+	void writeListInFile(List<Point> list, String sourceFile, String nameFile);
+
+	void writeStringInFile(String string, String sourceFile, String nameFile);
 
 	/**********
 	 * Methods of ManagerDataStore : ManagerKnn Package

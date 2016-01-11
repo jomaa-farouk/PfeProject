@@ -12,4 +12,6 @@ public interface IFileHandler {
     void displayPointsInFile(String fileSource, List<Point> points);
     
     void writeListInFile(List<Point> list, String sourceFile,String nameFile);
+    
+    void writeStringInFile(String string, String sourceFile,String nameFile);
 }

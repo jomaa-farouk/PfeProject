@@ -62,8 +62,12 @@ public class GlobalMain {
 			Point point = (Point) iteratorR.next();
 			Peer peer = managerCan.inWhichPeerIsThePoint(point);
 			System.out.println("The point " + point.toString() + " is in " + peer.toString());
+			long startTime = System.currentTimeMillis();
 			resultList=peer.KnnAlgorithm(managerCan.managerDataStore,k, point);
+			long endTime = System.currentTimeMillis();
+			long time=endTime-startTime;
 			managerCan.writeListInFile(resultList, workingDir + "\\files", point.getName());
+			managerCan.writeStringInFile("\nExecution Time = "+Long.valueOf(time)+" Millis", workingDir + "\\files",point.getName());
 			peer.displayKnnNeighborsList(managerCan.managerDataStore,resultList);
 		}
 

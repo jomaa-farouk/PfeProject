@@ -104,4 +104,20 @@ public class FileHandler implements IFileHandler {
 
 	}
 
+	@Override
+	public void writeStringInFile(String string, String sourceFile, String nameFile) {
+		try {
+			FileWriter fw = new FileWriter(sourceFile + "\\" + nameFile, true);
+			BufferedWriter output = new BufferedWriter(fw);
+			output.write(string);
+			output.flush();
+			output.close();
+			System.out.println("File created !");
+		} catch (IOException ioe) {
+			System.out.print("Error : ");
+			ioe.printStackTrace();
+		}
+
+	}
+
 }

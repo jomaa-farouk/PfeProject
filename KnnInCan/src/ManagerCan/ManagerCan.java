@@ -115,14 +115,20 @@ public class ManagerCan implements IManagerCan {
 		return this.inWhichPeerIsThePoint(point).getZone();
 	}
 
-	public void addPointToDataStore(ManagerDataStore managerDataStore,Point point) {
+	public void addPointToDataStore(ManagerDataStore managerDataStore, Point point) {
 		managerDataStore.addPointToDataStore(point);
 	}
 
 	@Override
 	public void writeListInFile(List<Point> list, String sourceFile, String nameFile) {
 		fileHundler.writeListInFile(list, sourceFile, nameFile);
-		
+
 	}
 
- }
+	@Override
+	public void writeStringInFile(String string, String sourceFile, String nameFile) {
+		fileHundler.writeStringInFile(string, sourceFile, nameFile);
+
+	}
+
+}
