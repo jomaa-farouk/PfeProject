@@ -24,7 +24,7 @@ public class FileHandler implements IFileHandler {
 
 		try {
 			BufferedReader e = new BufferedReader(new FileReader(fileSource));
-			Throwable var13 = null;
+			Throwable x = null;
 
 			try {
 				String sCurrentLine;
@@ -41,17 +41,17 @@ public class FileHandler implements IFileHandler {
 						Point point = new Point(pointName, pointX, pointY);
 						points.add(point);
 					}
-				} catch (Throwable var24) {
-					var13 = var24;
-					throw var24;
+				} catch (Throwable y) {
+					x = y;
+					throw y;
 				}
 			} finally {
 				if (e != null) {
-					if (var13 != null) {
+					if (x != null) {
 						try {
 							e.close();
 						} catch (Throwable var23) {
-							var13.addSuppressed(var23);
+							x.addSuppressed(var23);
 						}
 					} else {
 						e.close();
