@@ -9,8 +9,8 @@ public class ManagerKnnMain {
     }
 
     public static void main(String[] args) {
-        Point A = new Point("A", 1.5F, 2.0F);
-        Point B = new Point("B", 2.2F, 1.0F);
+        Point A = new Point("A", 1.5F, 0F);
+        Point B = new Point("B", 2.2F, 0F);
         Point C = new Point("C", 7.6F, 0.0F);
         Point D = new Point("D", 1.0F, 0.0F);
         Point E = new Point("E", 8.0F, 2.0F);

@@ -39,9 +39,9 @@ public class ManagerDataStore implements IManagerDataStore {
         while(iterator.hasNext()) {
             Point i = (Point)iterator.next();
             if(!i.getName().equals(p.getName())) {
-                float add = (float)Math.sqrt(Math.pow((double)(i.getX() - p.getX() + (i.getY() - p.getY())), 2.0D));
-                System.out.println("Distance between " + p.getName() + " and " + i.getName() + "=   " + add);
-                listDataStoreDistances.add(new ManagerPointDistance(i, add));
+                float dis = (float)Math.sqrt(       Math.pow((double)(i.getX() - p.getX()),2.0D)    +       Math.pow((double)(i.getY() - p.getY()), 2.0D));
+                System.out.println("Distance between " + p.getName() + " and " + i.getName() + "=   " + dis);
+                listDataStoreDistances.add(new ManagerPointDistance(i, dis));
             }
         }
 
