@@ -13,10 +13,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GlobalParallelMain {
-	public GlobalParallelMain() {
-	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		FileHandler fileHundler = new FileHandler();
 		Zone globalZone = new Zone(0.0F, 0.0F, 10000.0F, 10000.0F);
 		ManagerCan managerCan = new ManagerCan(globalZone, 40);
@@ -43,55 +41,44 @@ public class GlobalParallelMain {
 
 		Iterator<Point> iteratorS = SPoints.iterator();
 		System.out.println(RPoints.size());
-		
+
 		Point point;
 		Peer peer;
-		
-		System.out.println("Parallel Execution with K="+k);
+
+		System.out.println("Parallel Execution with K=" + k);
 
 		while (iteratorS.hasNext()) {
 			point = (Point) iteratorS.next();
-			managerCan.addPointToDataStore(managerCan.managerDataStore,point);
-			peer=managerCan.inWhichPeerIsThePoint(point);
-			RThreadPoints.add(new ThreadPoint(k, point,peer,managerCan.managerDataStore));
+			managerCan.addPointToDataStore(managerCan.managerDataStore, point);
+			peer = managerCan.inWhichPeerIsThePoint(point);
+			RThreadPoints.add(new ThreadPoint(k, point, peer, managerCan.managerDataStore));
 		}
 
 		Iterator<Point> iteratorR = RPoints.iterator();
 
 		while (iteratorR.hasNext()) {
 			point = (Point) iteratorR.next();
-			SThreadPoints.add(new ThreadPoint(k, point, managerCan.inWhichPeerIsThePoint(point),managerCan.managerDataStore));
+			SThreadPoints.add(
+					new ThreadPoint(k, point, managerCan.inWhichPeerIsThePoint(point), managerCan.managerDataStore));
 		}
 
 		Iterator<ThreadPoint> iterator = SThreadPoints.iterator();
 		ThreadPoint threadPoint;
 
 		long startTime = System.currentTimeMillis();
-		
-		
-		
+
 		while (iterator.hasNext()) {
 			threadPoint = (ThreadPoint) iterator.next();
 			threadPoint.start();
+			threadPoint.join();
 		}
 
-		try {
-
-			while (iterator.hasNext()) {
-				threadPoint = (ThreadPoint) iterator.next();
-				threadPoint.join();
-			}
-		} catch (InterruptedException e) {
-			;
-		}
 		
 		long endTime = System.currentTimeMillis();
-		long time=endTime-startTime;
-		
-		
-         
-		System.out.println("\nTotal Execution Time = "+time);
-		
+		long time = endTime - startTime;
+
+		System.out.println("\nTotal Parallel Execution Time = " + time);
+
 		System.out.println("\nFinished !");
 	}
 }

@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class GlobalMainK20 {
-	public GlobalMainK20() {
+public class GlobalMain {
+	public GlobalMain() {
 	}
 
 	public static void main(String[] args) {
