@@ -1,0 +1,56 @@
+*********************************************************************************
+
+Sequential execution with K=20
+
+
+Point [name=Q, x=10.0, y=1.0]
+Point [name=E, x=10.2, y=2.8]
+Point [name=QQS, x=8.2, y=1.2]
+Point [name=AZER, x=8.0, y=2.36]
+Point [name=H, x=7.4, y=1.0]
+Point [name=DD, x=7.25, y=2.33]
+Point [name=BHC, x=8.0, y=4.5]
+Point [name=VCB, x=8.0, y=5.1]
+Point [name=BB, x=8.124, y=5.23]
+Point [name=G, x=5.0, y=2.0]
+Point [name=FGHD, x=5.0, y=2.14]
+Point [name=J, x=5.0, y=2.3]
+Point [name=AA, x=8.25, y=6.259]
+Point [name=SSS, x=7.0, y=8.0]
+Point [name=Z, x=2.36, y=1.236]
+Point [name=C, x=2.0, y=2.0]
+Point [name=LKJ, x=2.0, y=2.321]
+Point [name=S, x=2.0, y=0.0]
+Point [name=MMM, x=2.0, y=0.0]
+Point [name=F, x=3.02, y=5.9]
+
+Execution Time = 2 Millis
+
+*********************************************************************************
+
+Sequential execution with K=20
+
+
+Point [name=Q, x=10.0, y=1.0]
+Point [name=E, x=10.2, y=2.8]
+Point [name=QQS, x=8.2, y=1.2]
+Point [name=AZER, x=8.0, y=2.36]
+Point [name=H, x=7.4, y=1.0]
+Point [name=DD, x=7.25, y=2.33]
+Point [name=BHC, x=8.0, y=4.5]
+Point [name=VCB, x=8.0, y=5.1]
+Point [name=BB, x=8.124, y=5.23]
+Point [name=G, x=5.0, y=2.0]
+Point [name=FGHD, x=5.0, y=2.14]
+Point [name=J, x=5.0, y=2.3]
+Point [name=AA, x=8.25, y=6.259]
+Point [name=SSS, x=7.0, y=8.0]
+Point [name=Z, x=2.36, y=1.236]
+Point [name=C, x=2.0, y=2.0]
+Point [name=LKJ, x=2.0, y=2.321]
+Point [name=S, x=2.0, y=0.0]
+Point [name=MMM, x=2.0, y=0.0]
+Point [name=F, x=3.02, y=5.9]
+
+Execution Time = 9 Millis
+

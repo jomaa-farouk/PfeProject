@@ -1,0 +1,56 @@
+*********************************************************************************
+
+Sequential execution with K=20
+
+
+Point [name=LLLLLL, x=10.0, y=100.0]
+Point [name=QCV, x=1.0, y=87.65]
+Point [name=XXX, x=1.0, y=125.0]
+Point [name=CCCCCC, x=15.0, y=125.0]
+Point [name=BBBBBB, x=20.5, y=123.0]
+Point [name=WQA, x=41.0, y=87.0]
+Point [name=GGGGGG, x=44.0, y=100.0]
+Point [name=LLL, x=0.0, y=54.0]
+Point [name=VV, x=21.0, y=58.0]
+Point [name=KKKKKK, x=12.0, y=52.0]
+Point [name=L, x=25.0, y=26.0]
+Point [name=EEE, x=21.0, y=24.0]
+Point [name=RRR, x=26.0, y=25.0]
+Point [name=OO, x=2.0, y=20.0]
+Point [name=P, x=20.0, y=20.0]
+Point [name=DDD, x=1.0, y=11.0]
+Point [name=M, x=21.0, y=12.0]
+Point [name=CC, x=6.32, y=9.65]
+Point [name=B, x=1.4, y=8.0]
+Point [name=SSS, x=7.0, y=8.0]
+
+Execution Time = 1 Millis
+
+*********************************************************************************
+
+Sequential execution with K=20
+
+
+Point [name=LLLLLL, x=10.0, y=100.0]
+Point [name=QCV, x=1.0, y=87.65]
+Point [name=XXX, x=1.0, y=125.0]
+Point [name=CCCCCC, x=15.0, y=125.0]
+Point [name=BBBBBB, x=20.5, y=123.0]
+Point [name=WQA, x=41.0, y=87.0]
+Point [name=GGGGGG, x=44.0, y=100.0]
+Point [name=LLL, x=0.0, y=54.0]
+Point [name=VV, x=21.0, y=58.0]
+Point [name=KKKKKK, x=12.0, y=52.0]
+Point [name=L, x=25.0, y=26.0]
+Point [name=EEE, x=21.0, y=24.0]
+Point [name=RRR, x=26.0, y=25.0]
+Point [name=OO, x=2.0, y=20.0]
+Point [name=P, x=20.0, y=20.0]
+Point [name=DDD, x=1.0, y=11.0]
+Point [name=M, x=21.0, y=12.0]
+Point [name=CC, x=6.32, y=9.65]
+Point [name=B, x=1.4, y=8.0]
+Point [name=SSS, x=7.0, y=8.0]
+
+Execution Time = 7 Millis
+
