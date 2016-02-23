@@ -40,8 +40,8 @@ public class GlobalMain {
 		fileHundler.displayPointsInFile(fileSSource, SPoints);
 		fileHundler.displayPointsInFile(fileRSource, RPoints);
 		
-		
-		int k = 20;
+		//change k from here
+		int k = 64;
 
 		
 		Iterator<Point> iteratorS= SPoints.iterator();
