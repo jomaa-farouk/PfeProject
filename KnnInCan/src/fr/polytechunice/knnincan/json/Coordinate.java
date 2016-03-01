@@ -1,13 +1,13 @@
 package fr.polytechunice.knnincan.json;
 
-public class Fields {
+public class Coordinate {
 
-	Float stop_lat;
-	Float stop_lon;
-	Integer stop_id;
+	private Float stop_lat;
+	private Float stop_lon;
+	private Integer stop_id;
 	
 	
-	public Fields() {
+	public Coordinate() {
 		super();
 	}
 	

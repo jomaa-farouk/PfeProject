@@ -3,7 +3,7 @@ package fr.polytechunice.knnincan.json;
 public class DataSet {
 
 	String datasetid;
-    Fields fields;
+    Coordinate fields;
     
     public DataSet() {
 		super();
@@ -15,10 +15,10 @@ public class DataSet {
 	public void setDatasetid(String datasetid) {
 		this.datasetid = datasetid;
 	}
-	public Fields getFields() {
+	public Coordinate getFields() {
 		return fields;
 	}
-	public void setFields(Fields fields) {
+	public void setFields(Coordinate fields) {
 		this.fields = fields;
 	}
 
