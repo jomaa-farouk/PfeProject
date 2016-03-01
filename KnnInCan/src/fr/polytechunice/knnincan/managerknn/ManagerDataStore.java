@@ -40,8 +40,13 @@ public class ManagerDataStore implements IManagerDataStore {
         while(iterator.hasNext()) {
             Point i = (Point)iterator.next();
             if(!i.getName().equals(p.getName())) {
-                float dis = (float)Math.sqrt(       Math.pow((double)(i.getX() - p.getX()),2.0D)    +       Math.pow((double)(i.getY() - p.getY()), 2.0D));
-                System.out.println("Distance between " + p.getName() + " and " + i.getName() + "=   " + dis);
+                
+            	// si vous travaillez dans un repère cartésien décommenter la ligne suivante et commenter la ligne après 
+            	
+                //float dis = (float)Math.sqrt(Math.pow((double)(i.getX() - p.getX()),2.0D) +  Math.pow((double)(i.getY() - p.getY()), 2.0D));
+                float dis = distFrom (i.getX(), i.getY(), p.getX(), p.getY());
+            	
+            	System.out.println("Distance between " + p.getName() + " and " + i.getName() + "=   " + dis);
                 listDataStoreDistances.add(new ManagerPointDistance(i, dis));
             }
         }
@@ -66,4 +71,18 @@ public class ManagerDataStore implements IManagerDataStore {
 
         System.out.println("\n");
     }
+    
+    public static float distFrom(float lat1, float lng1, float lat2, float lng2) {
+        double earthRadius = 6371000; //meters
+        double dLat = Math.toRadians(lat2-lat1);
+        double dLng = Math.toRadians(lng2-lng1);
+        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                   Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
+                   Math.sin(dLng/2) * Math.sin(dLng/2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        float dist = (float) (earthRadius * c);
+
+        return dist;
+        }
+
 }

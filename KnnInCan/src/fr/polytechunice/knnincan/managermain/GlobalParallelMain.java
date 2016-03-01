@@ -38,7 +38,7 @@ public class GlobalParallelMain {
 		fileHundler.displayPointsInFile(fileRSource, RPoints);
 
 		//change k from here
-		byte k = 64;
+		byte k = 10;
 
 		Iterator<Point> iteratorS = SPoints.iterator();
 		System.out.println(RPoints.size());
